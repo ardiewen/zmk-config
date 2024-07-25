@@ -8,28 +8,32 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
+#define DEFAULT 0
+#define NUMBERS 1
+#define SYMBOLS 2
+
 / {
         keymap {
                 compatible = "zmk,keymap";
 
                 default_layer {
 // -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
+// |  |     Q     |     W     |     E     |     R     |     T     |          |     Y     |     U     |     I     |     O     |     P     |   |
+// |  | LCTL_T(A) | LALT_T(S) | LGUI_T(D) | LSFT_T(F) |     G     |          |     H     | RSFT_T(J) | RGUI_T(K) | RALT_T(L) | RCTL_T(;) |   |
+// |  |     Z     |     X     |     C     |     V     |     B     |          |     N     |     M     |     ,     |     .     |     /     |   |
+//                            | LT(2,ESC) | LT(1,TAB) |    SPC    |          |    ENT    |   BSPC    | LT(#, ...)|
                         bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp LCTRL &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp ESC
-                  &kp LGUI &mo 1 &kp SPACE   &kp RET &mo 2 &kp RALT
+   &none  &kp Q        &kp W       &kp E            &kp R            &kp T            &kp Y  &kp U        &kp I       &kp O       &kp P           &none
+   &none  &mt LCTRL A  &mt LALT S  &mt LGUI D       &mt LSHFT F      &kp G            &kp H  &mt RSHFT J  &mt RGUI K  &mt RALT L  &mt RCTRL SEMI  &none
+   &none  &kp Z        &kp X       &kp C            &kp V            &kp B            &kp N  &kp M        &kp COMMA   &kp DOT     &kp FSLH        &none
+                                   &lt SYMBOLS ESC  &lt NUMBERS TAB  &kp SPACE        &kp RET  &kp BSPC  &lt SYMBOLS DOT
                         >;
                 };
-                lower_layer {
+                numbers_layer {
 // -----------------------------------------------------------------------------------------
-// |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-// | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
+// |  |    |    |  up  |    |    |   |  6  |  7  |  8  |  9  |  0  | BKSP |
+// |  | home | left | down | right | end  |   | LFT | DWN |  UP | RGT |     |      |
+// |  |     |     |     |     |     |   |     |     |     |     |     |      |
 //                    | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
    &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
@@ -39,7 +43,7 @@
                         >;
                 };
 
-                raise_layer {
+                symbols_layer {
 // -----------------------------------------------------------------------------------------
 // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
 // | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |

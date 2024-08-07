@@ -137,6 +137,6 @@
    &none  &trans  &kp LC(LA(J))     &kp LC(LA(RET))   &kp LC(LA(K))      &trans        &trans  &trans          &trans      &trans        &trans        &none
                                     &trans            &trans             &trans        &trans  &trans     &trans
                         >;
-                }
+                };
         };
 };

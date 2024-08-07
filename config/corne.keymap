@@ -13,11 +13,6 @@
 #define SYMBOLS 2
 #define FUNCTIONS 3
 
-// combos
-// Q + SPC = `
-// Q and lt numbers tab equals left ctrl `
-
-
 / {
         behaviors {
                 hrm: home_row_mod {
@@ -34,12 +29,54 @@
         };
 
         combos {
+// -----------------------------------------------------------------------------------------
+// |  0 |  1 |  2 |  3 |  4 |  5 |        |  6 |  7 |  8 |  9 | 10 | 11 |
+// | 12 | 13 | 14 | 15 | 16 | 17 |        | 18 | 19 | 20 | 21 | 22 | 23 |
+// | 24 | 25 | 26 | 27 | 28 | 29 |        | 30 | 31 | 32 | 33 | 34 | 35 |
+//                | 36 | 37 | 38 |        | 39 | 40 | 41 |
+
                 compatible = "zmk,combos";
                 combo_backtick {
                         timeout-ms = <50>;
-                        key-positions = <1 2>;
+                        key-positions = <1 38>; // Q + SPACE 
                         bindings = <&kp GRAVE>;
                 };
+                combo_vsc_terminal {
+                        timeout-ms = <50>;
+                        key-positions = <1 37>; // Q + TAB 
+                        bindings = <&kp LC(GRAVE)>;
+                };
+                combo_undo {
+                        timeout-ms = <50>;
+                        key-positions = <25 26>; // Z + X 
+                        bindings = <&kp LG(Z)>;
+                };
+                combo_cut {
+                        timeout-ms = <50>;
+                        key-positions = <26 27>; // X + C 
+                        bindings = <&kp LG(X)>;
+                };
+                combo_copy {
+                        timeout-ms = <50>;
+                        key-positions = <27 28>; // C + V 
+                        bindings = <&kp LG(C)>;
+                };
+                combo_paste {
+                        timeout-ms = <50>;
+                        key-positions = <28 29>; // V + B 
+                        bindings = <&kp LG(C)>;
+                };
+                combo_dash {
+                        timeout-ms = <50>;
+                        key-positions = <8 9>; // I + O 
+                        bindings = <&kp LG(C)>;
+                };
+                combo_equal {
+                        timeout-ms = <50>;
+                        key-positions = <9 10>; // O + P 
+                        bindings = <&kp LG(C)>;
+                };
+
          };
 
         keymap {

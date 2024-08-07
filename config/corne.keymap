@@ -37,7 +37,7 @@
                 compatible = "zmk,combos";
                 combo_backtick {
                         timeout-ms = <50>;
-                        key-positions = <1,2>;
+                        key-positions = <1 2>;
                         action = <&kp GRAVE>;
                 };
          };

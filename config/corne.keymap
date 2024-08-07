@@ -64,17 +64,17 @@
                 combo_paste {
                         timeout-ms = <50>;
                         key-positions = <28 29>; // V + B 
-                        bindings = <&kp LG(C)>;
+                        bindings = <&kp LG(V)>;
                 };
                 combo_dash {
                         timeout-ms = <50>;
                         key-positions = <8 9>; // I + O 
-                        bindings = <&kp LG(C)>;
+                        bindings = <&kp MINUS>;
                 };
                 combo_equal {
                         timeout-ms = <50>;
                         key-positions = <9 10>; // O + P 
-                        bindings = <&kp LG(C)>;
+                        bindings = <&kp EQUAL>;
                 };
 
          };

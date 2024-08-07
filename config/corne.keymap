@@ -11,6 +11,12 @@
 #define DEFAULT 0
 #define NUMBERS 1
 #define SYMBOLS 2
+#define FUNCTIONS 3
+
+// combos
+// Q + W = ...
+// Q + SPC = `
+
 
 / {
         keymap {
@@ -23,20 +29,20 @@
 // |  |     Z     |     X     |     C     |     V     |     B     |          |     N     |     M     |     ,     |     .     |     /     |   |
 //                            | LT(2,ESC) | LT(1,TAB) |    SPC    |          |    ENT    |   BSPC    | LT(#, ...)|
                         bindings = <
-   &none  &kp Q        &kp W       &kp E            &kp R            &kp T            &kp Y  &kp U        &kp I       &kp O       &kp P           &none
-   &none  &mt LCTRL A  &mt LALT S  &mt LGUI D       &mt LSHFT F      &kp G            &kp H  &mt RSHFT J  &mt RGUI K  &mt RALT L  &mt RCTRL SEMI  &none
-   &none  &kp Z        &kp X       &kp C            &kp V            &kp B            &kp N  &kp M        &kp COMMA   &kp DOT     &kp FSLH        &none
-                                   &lt SYMBOLS ESC  &lt NUMBERS TAB  &kp SPACE        &kp RET  &kp BSPC  &lt SYMBOLS DOT
+   &none  &kp Q        &kp W       &kp E              &kp R            &kp T            &kp Y  &kp U        &kp I       &kp O       &kp P           &none
+   &none  &mt LCTRL A  &mt LALT S  &mt LGUI D         &mt LSHFT F      &kp G            &kp H  &mt RSHFT J  &mt RGUI K  &mt RALT L  &mt RCTRL SEMI  &none
+   &none  &kp Z        &kp X       &kp C              &kp V            &kp B            &kp N  &kp M        &kp COMMA   &kp DOT     &kp FSLH        &none
+                                   &lt FUNCTIONS ESC  &lt NUMBERS TAB  &kp SPACE        &kp RET  &kp BSPC  &lt SYMBOLS DEL
                         >;
                 };
                 numnav_layer {
 // -----------------------------------------------------------------------------------------
-// |  |      |      |  up  |       |     |        |  6  |  7  |  8  |  9  |  -  |  |
-// |  | home | left | down | right | end |        |  *  |  4  |  5  |  6  |  +  |  |
-// |  |      |      |      |       |     |        |  .  |  1  |  2  |  3  |  =  |  |
-//                  |      |       |     |        |     |     |  0  | 
+// |  |  ESC |      |  UP  |        |     |        |  6  |  7   |  8  |  9  |  -  |  |
+// |  | HOME | LEFT | DOWN |  RIGHT | END |        |  *  |  4   |  5  |  6  |  +  |  |
+// |  |      |      |      |        | SPC |        |  .  |  1   |  2  |  3  |  =  |  |
+//                  |      | [hold] | SPC |        | RET | BSPC |  0  | 
                         bindings = <
-   &none  &trans    &trans    &kp UP    &trans     &trans         &kp KP_DIVIDE    &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp KP_MINUS  &none
+   &none  &kp ESC   &trans    &kp UP    &trans     &trans         &kp KP_DIVIDE    &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp KP_MINUS  &none
    &none  &kp HOME  &kp LEFT  &kp DOWN  &kp RIGHT  &kp END        &kp KP_MULTIPLY  &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp KP_PLUS   &none
    &none  &trans    &trans    &trans    &trans     &trans         &kp KP_DOT       &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_EQUAL  &none
                               &trans    &trans     &trans         &trans           &trans     &kp KP_N0
@@ -45,10 +51,10 @@
 
                 symbols_layer {
 // -----------------------------------------------------------------------------------------
-// |  |  !  |  @  |  #  |  $  |  %  |        |  ^  |  &  |  *  |  (  |  )  |  |
-// |  |  `  |  <  |  {  |  (  |  [  |        |  ]  |  )  |  }  |  >  |  '  |  |
-// |  |     |     |     |     |     |        |  -  |  _  |     |  \  | "|" |  |
-//                |     |     |     |        |     |     |     |
+// |  |  !  |  @  |  #  |  $  |  %  |        |  ^  |  &  |  *     |  (  |  )  |  |
+// |  |  `  |  <  |  {  |  (  |  [  |        |  ]  |  )  |  }     |  >  |  '  |  |
+// |  |     |     |     |     |     |        |  -  |  _  |        |  \  | "|" |  |
+//                |     |     |     |        |     |     | [hold] |
                         bindings = <
    &none  &kp EXCL   &kp AT  &kp HASH  &kp DLLR  &kp PRCNT        &kp CARET  &kp AMPS   &kp ASTRK &kp MINUS  &kp EQUAL  &none
    &none  &kp GRAVE  &kp LT  &kp LBRC  &kp LPAR  &kp LBKT         &kp RBKT   &kp RPAR   &kp RBRC  &kp GT     &kp SQT    &none

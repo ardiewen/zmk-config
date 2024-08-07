@@ -8,48 +8,134 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
+#define DEFAULT 0
+#define NUMBERS 1
+#define SYMBOLS 2
+#define FUNCTIONS 3
+
 / {
+        behaviors {
+                hrm: home_row_mod {
+                        compatible = "zmk,behavior-hold-tap";
+                        #binding-cells = <2>;
+                        flavor = "balanced";
+                        tapping-term-ms = <280>;
+                        quick-tap-ms = <175>;
+                        require-prior-idle-ms = <150>;
+                        bindings = <&kp>, <&kp>;
+                        // hold-trigger-key-positions = ; // TO IMPLEMENT
+                        // hold-trigger-on-release;
+                };
+        };
+
+        combos {
+                // key-positions for corne layout
+                // ----------------------------------------------------------------------
+                // |  0 |  1 |  2 |  3 |  4 |  5 |        |  6 |  7 |  8 |  9 | 10 | 11 |
+                // | 12 | 13 | 14 | 15 | 16 | 17 |        | 18 | 19 | 20 | 21 | 22 | 23 |
+                // | 24 | 25 | 26 | 27 | 28 | 29 |        | 30 | 31 | 32 | 33 | 34 | 35 |
+                //                | 36 | 37 | 38 |        | 39 | 40 | 41 |
+
+                compatible = "zmk,combos";
+                combo_backtick {
+                        timeout-ms = <50>;
+                        key-positions = <1 38>; // Q + SPACE 
+                        bindings = <&kp GRAVE>;
+                };
+                combo_vsc_terminal {
+                        timeout-ms = <50>;
+                        key-positions = <1 37>; // Q + TAB 
+                        bindings = <&kp LC(GRAVE)>;
+                };
+                combo_undo {
+                        timeout-ms = <50>;
+                        key-positions = <25 26>; // Z + X 
+                        bindings = <&kp LG(Z)>;
+                };
+                combo_cut {
+                        timeout-ms = <50>;
+                        key-positions = <26 27>; // X + C 
+                        bindings = <&kp LG(X)>;
+                };
+                combo_copy {
+                        timeout-ms = <50>;
+                        key-positions = <27 28>; // C + V 
+                        bindings = <&kp LG(C)>;
+                };
+                combo_paste {
+                        timeout-ms = <50>;
+                        key-positions = <28 29>; // V + B 
+                        bindings = <&kp LG(V)>;
+                };
+                combo_dash {
+                        timeout-ms = <50>;
+                        key-positions = <8 9>; // I + O 
+                        bindings = <&kp MINUS>;
+                };
+                combo_equal {
+                        timeout-ms = <50>;
+                        key-positions = <9 10>; // O + P 
+                        bindings = <&kp EQUAL>;
+                };
+
+         };
+
         keymap {
                 compatible = "zmk,keymap";
 
                 default_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
+// -------------------------------------------------------------------------------------------------------------------------------------------
+// |  |     Q     |     W     |     E     |     R     |     T     |          |     Y     |     U     |     I     |     O     |     P     |   |
+// |  | LCTL_T(A) | LALT_T(S) | LGUI_T(D) | LSFT_T(F) |     G     |          |     H     | RSFT_T(J) | RGUI_T(K) | RALT_T(L) | RCTL_T(;) |   |
+// |  |     Z     |     X     |     C     |     V     |     B     |          |     N     |     M     |     ,     |     .     |     /     |   |
+//                            | LT(2,ESC) | LT(1,TAB) |    SPC    |          |    ENT    |   BSPC    | LT(#, ...)|
                         bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp LCTRL &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp ESC
-                  &kp LGUI &mo 1 &kp SPACE   &kp RET &mo 2 &kp RALT
-                        >;
-                };
-                lower_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-// | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-   &kp LSHFT  &trans       &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &trans
-                                    &kp LGUI     &trans       &kp SPACE      &kp RET  &trans   &kp RALT
+   &none  &kp Q         &kp W        &kp E               &kp R             &kp T            &kp Y    &kp U         &kp I           &kp O        &kp P           &none
+   &none  &hrm LCTRL A  &hrm LALT S  &hrm LGUI D         &hrm LSHFT F      &kp G            &kp H    &hrm RSHFT J  &hrm RGUI K     &hrm RALT L  &mt RCTRL SEMI  &none
+   &none  &kp Z         &kp X        &kp C               &kp V             &kp B            &kp N    &kp M         &kp COMMA       &kp DOT      &kp FSLH        &none
+                                     &lt FUNCTIONS ESC   &lt NUMBERS TAB   &kp SPACE        &kp RET  &kp BSPC      &lt SYMBOLS DEL
                         >;
                 };
 
-                raise_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
+                numnav_layer {
+// -----------------------------------------------------------------------------------
+// |  |  ESC |      |  UP  |        |     |        |  6  |  7   |  8  |  9  |  -  |  |
+// |  | HOME | LEFT | DOWN |  RIGHT | END |        |  *  |  4   |  5  |  6  |  +  |  |
+// |  |      |      |      |        | SPC |        |  .  |  1   |  2  |  3  |  =  |  |
+//                  |      | [held] | SPC |        | RET | BSPC |  0  | 
                         bindings = <
-   &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp BSPC
-   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &kp GRAVE
-   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &kp TILDE
-                             &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
+   &none  &kp ESC   &trans    &kp UP    &trans     &trans         &kp KP_DIVIDE    &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp KP_MINUS  &none
+   &none  &kp HOME  &kp LEFT  &kp DOWN  &kp RIGHT  &kp END        &kp KP_MULTIPLY  &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp KP_PLUS   &none
+   &none  &trans    &trans    &trans    &trans     &trans         &kp KP_DOT       &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_EQUAL  &none
+                              &trans    &trans     &trans         &trans           &trans     &kp KP_N0
+                        >;
+                };
+
+                symbols_layer {
+// -------------------------------------------------------------------------------
+// |  |  !  |  @  |  #  |  $  |  %  |        |  ^  |  &  |  *     |  (  |  )  |  |
+// |  |  `  |  <  |  {  |  (  |  [  |        |  ]  |  )  |  }     |  >  |  '  |  |
+// |  |     |     |     |     |     |        |  -  |  _  |        |  \  | "|" |  |
+//                |     |     |     |        |     |     | [held] |
+                        bindings = <
+   &none  &kp EXCL   &kp AT  &kp HASH  &kp DLLR  &kp PRCNT        &kp CARET  &kp AMPS   &kp ASTRK &kp MINUS  &kp EQUAL  &none
+   &none  &kp GRAVE  &kp LT  &kp LBRC  &kp LPAR  &kp LBKT         &kp RBKT   &kp RPAR   &kp RBRC  &kp GT     &kp SQT    &none
+   &none  &trans     &trans  &trans    &trans    &trans           &kp MINUS  &kp UNDER  &trans    &kp BSLH   &kp PIPE   &none
+                             &trans    &trans    &trans           &trans     &trans     &trans
+                        >;
+                };
+
+                functions_layer {
+// -----------------------------------------------------------------------------------
+// |  |  | TOPLEFT |   UP   | TOPRIGHT |     |        |     |      | MUTE | VOL DN | VOL UP |  |
+// |  |  | LEFT    |  DOWN  |  RIGHT   |     |        |     | SCRN |      |        |        |  |
+// |  |  | BTMLEFT |  FULL  | BTMRIGHT |     |        |     |      |      |        |        |  |
+//                 | [held] |   TAB    | SPC |        | RET | BSPC | DEL  | 
+                        bindings = <
+   &none  &trans  &kp LC(LA(U))     &kp LC(LA(UP))    &kp LC(LA(I))      &trans        &trans  &trans          &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &none
+   &none  &trans  &kp LC(LA(LEFT))  &kp LC(LA(DOWN))  &kp LC(LA(RIGHT))  &trans        &trans  &kp LG(LS(N4))  &trans      &trans        &trans        &none
+   &none  &trans  &kp LC(LA(J))     &kp LC(LA(RET))   &kp LC(LA(K))      &trans        &trans  &trans          &trans      &trans        &trans        &none
+                                    &trans            &trans             &trans        &trans  &trans     &trans
                         >;
                 };
         };

@@ -29,8 +29,9 @@
                         bindings = <&kp>, <&kp>;
                         // hold-trigger-key-positions = ; // TO IMPLEMENT
                         // hold-trigger-on-release;
-                }
-        }
+                };
+        };
+        
         keymap {
                 compatible = "zmk,keymap";
 

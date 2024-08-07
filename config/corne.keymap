@@ -38,7 +38,7 @@
                 combo_backtick {
                         timeout-ms = <50>;
                         key-positions = <1 2>;
-                        action = <&kp GRAVE>;
+                        bindings = <&kp GRAVE>;
                 };
          };
 

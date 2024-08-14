@@ -77,6 +77,11 @@
                         key-positions = <9 10>; // O + P 
                         bindings = <&kp EQUAL>;
                 };
+                combo_apos {
+                        timeout-ms = <50>;
+                        key-positions = <22 23>; // L + ; 
+                        bindings = <&kp APOS>;
+                };
 
          };
 

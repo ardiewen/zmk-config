@@ -1,0 +1,8 @@
+.build
+.direnv
+.west
+modules
+firmware
+zephyr/*
+!zephyr/module.yml
+zmk

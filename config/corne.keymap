@@ -61,19 +61,36 @@ ZMK_HOLD_TAP(hmr,
         //    ╰────────────────┴────────────────┴────────────────┼────────────────┼────────────────┼────────────────┤   ├────────────────┼────────────────┼────────────────┼────────────────┴────────────────┴────────────────╯
         //                                                         LH2              LH1              LH0                  RH0              RH1              RH2
         //                                                       ╰────────────────┴────────────────┴────────────────╯   ╰────────────────┴────────────────┴────────────────╯
-
-ZMK_COMBO(esc, &kp ESC, LT4 LT3) // Q + W
-ZMK_COMBO(backtick, &kp GRAVE, LT4 LB0) // Q + B
-ZMK_COMBO(vsc_terminal, &kp LC(GRAVE), LT4 LB1) // Q + V
-ZMK_COMBO(tab, &kp TAB, LM3 LM2) // S + D
-ZMK_COMBO(undo, &kp LG(Z), LB4 LB3) // Z + X
-ZMK_COMBO(cut, &kp LG(X), LB3 LB2) // X + C
-ZMK_COMBO(copy, &kp LG(C), LB2 LB1) // C + V
-ZMK_COMBO(paste, &kp LG(V), LB1 LB0) // V + B
-ZMK_COMBO(minus, &kp MINUS, RT2 RT3) // I + O
-ZMK_COMBO(equal, &kp EQUAL, RT3 RT4) // O + P
-ZMK_COMBO(enter, &kp ENTER, RM2 RM3) // K + L
-ZMK_COMBO(apos, &kp APOS, RM3 RM4) // L + ;
+// Vertical Combos - Left
+ZMK_COMBO(excl, &kp N1, LT4 LM4)        // Q + A => 1 !
+ZMK_COMBO(at, &kp N2, LT3 LM3)          // W + S => 2 @
+ZMK_COMBO(hash, &kp N3, LT2 LM2)        // E + D => 3 #
+ZMK_COMBO(dollar, &kp N4, LT1 LM1)      // R + F => 4 $
+ZMK_COMBO(percent, &kp N5, LT0 LM0)     // T + G => 5 %
+// Vertical Combos - Right
+ZMK_COMBO(caret, &kp N6, RT0 RM0)       // Y + H => 6 ^
+ZMK_COMBO(ampersand, &kp N7, RT1 RM1)   // U + J => 7 &
+ZMK_COMBO(asterisk, &kp N8, RT2 RM2)    // I + K => 8 *
+ZMK_COMBO(lparen, &kp N9, RT3 RM3)      // O + L => 9 (
+ZMK_COMBO(rparen, &kp N0, RT4 RM4)      // P + ; => 0 )
+// Horizontal Combos - Top Left
+ZMK_COMBO(esc, &kp ESC, LT4 LT3)        // Q + W => ESC
+ZMK_COMBO(backtick, &kp GRAVE, LT4 LB0) // Q + B => `
+ZMK_COMBO(vsc_t, &kp LC(GRAVE), LT4 LB1) // Q + V => CTRL + `
+// Horizontal Combos - Middle Left
+// ZMK_COMBO(tab, &kp TAB, LM3 LM2) // S + D
+// Horizontal Combos - Bottom Left
+ZMK_COMBO(undo, &kp LG(Z), LB4 LB0)     // Z + B => CMD + Z
+ZMK_COMBO(cut, &kp LG(X), LB4 LB3)      // Z + X => CMD + X
+ZMK_COMBO(copy, &kp LG(C), LB4 LB2)     // Z + C => CMD + C
+ZMK_COMBO(paste, &kp LG(V), LB4 LB1)    // Z + V => CMD + V
+// Horizontal Combos - Top Right
+ZMK_COMBO(minus, &kp MINUS, RT2 RT3)    // I + O => -
+ZMK_COMBO(equal, &kp EQUAL, RT3 RT4)    // O + P => =
+// Horizontal Combos - Middle Right
+// ZMK_COMBO(enter, &kp ENTER, RM2 RM3) // K + L
+// Horizontal Combos - Bottom Right
+ZMK_COMBO(apos, &kp APOS, RM3 RM4)      // L + ; => '
 
 ZMK_LAYER(default_layer,
         //    ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮   ╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮
@@ -84,6 +101,6 @@ ZMK_LAYER(default_layer,
                 &none            &kp Z            &kp X            &kp C            &kp V            &kp B                &kp N            &kp M            &kp COMMA        &kp DOT          &kp FSLH         &none
         //    ╰────────────────┴────────────────┴────────────────┼────────────────┼────────────────┼────────────────┤   ├────────────────┼────────────────┼────────────────┼────────────────┴────────────────┴────────────────╯
                                                                    &kp ESC          &kp TAB          &kp SPACE            &kp RET          &kp BSPC         &kp DEL
-        //                                                       ╰────────────────┴────────────────┴────────────────╯   ╰────────────────┴────────────────┴────────────────╯
+        //                                                     ╰────────────────┴────────────────┴────────────────╯   ╰────────────────┴────────────────┴────────────────╯
 
 )
